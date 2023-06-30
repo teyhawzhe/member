@@ -1,5 +1,6 @@
 package com.example.membership.data.vo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,8 +16,10 @@ public class ResponseVo<T> implements Serializable {
 
     private int status;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String message;
 
 }

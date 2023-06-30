@@ -9,6 +9,8 @@ public interface MemberService {
 
     public List<Member> findAll();
 
+    public Member find(BigDecimal id);
+
     public Member findById(BigDecimal id);
 
     public void save(Member memberEntity);

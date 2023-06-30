@@ -49,9 +49,12 @@ public class Member implements Serializable {
     @Column(nullable = false, updatable = false)
     private Date createDate;
 
-    @ToString.Exclude
     @Column(nullable = false)
     private boolean isActive;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(insertable = false)
+    private Date stopDate;
 
 }
 
