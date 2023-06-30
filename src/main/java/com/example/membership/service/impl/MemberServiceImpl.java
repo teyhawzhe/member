@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,7 +39,8 @@ public class MemberServiceImpl implements MemberService {
     @Transactional(rollbackFor = Throwable.class)
     @Override
     public void save(Member memberEntity) {
-        if (Objects.isNull(this.findById(memberEntity.getId()))) {
+        if (Objects.isNull(memberEntity.getId())) {
+            memberEntity.setCreateDate(Calendar.getInstance().getTime());
             this.memberEntityDao.save(memberEntity);
         } else {
             throw new DuplicateKeyException(String.format("%s , id is exists", memberEntity.toString()));
@@ -55,7 +57,7 @@ public class MemberServiceImpl implements MemberService {
     @Transactional(rollbackFor = Throwable.class)
     @Override
     public void update(Member memberEntity) {
-        if (Objects.isNull(this.findById(memberEntity.getId()))) {
+        if (Objects.isNull(memberEntity.getId()) || Objects.isNull(this.findById(memberEntity.getId()))) {
             throw new NullPointerException(String.format("%s is not existed in table", memberEntity.toString()));
         } else {
             this.memberEntityDao.save(memberEntity);

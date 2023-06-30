@@ -1,7 +1,10 @@
 package com.example.membership.membership.model;
 
+import com.example.membership.enums.Sex;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -14,8 +17,8 @@ import java.util.Date;
 public class Member implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "MEMBER_SEQ")
-    @SequenceGenerator(sequenceName = "MEMBER_SEQ",allocationSize = 1,name = "MEMBER_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ")
+    @SequenceGenerator(sequenceName = "MEMBER_SEQ", allocationSize = 1, name = "MEMBER_SEQ")
     @Column(nullable = false)
     private BigDecimal id;
 
@@ -26,7 +29,8 @@ public class Member implements Serializable {
     private String lastName;
 
     @Column(nullable = false)
-    private char sex;
+    @Enumerated(EnumType.ORDINAL)
+    private Sex sex;
 
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
@@ -37,6 +41,9 @@ public class Member implements Serializable {
 
     @Column(nullable = false)
     private String address;
+
+    @Column(nullable = false, unique = true)
+    private String email;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, updatable = false)

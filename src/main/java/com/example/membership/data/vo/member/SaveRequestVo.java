@@ -1,7 +1,8 @@
 package com.example.membership.data.vo.member;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
+import com.example.membership.enums.Sex;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -15,25 +16,27 @@ import java.util.Date;
 @ToString
 public class SaveRequestVo {
 
-    @NotNull
+    @NotBlank
     @Size(min = 1, max = 20)
     private String firstName;
 
-    @NotNull
+    @NotBlank
     @Size(min = 1, max = 20)
     private String lastName;
 
-    @Size(min = 1, max = 1)
-    private char sex;
+    private Sex sex;
 
     @NotNull
     private Date birth;
 
-    @NotNull
+    @NotBlank
     private String tel;
 
-    @NotNull
+    @NotBlank
     private String address;
 
+    @NotBlank
+    @Email
+    private String email;
 
 }

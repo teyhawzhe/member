@@ -1,35 +1,21 @@
 package com.example.membership.data.vo.member;
 
-import lombok.*;
+import com.example.membership.enums.Sex;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Setter
 @Getter
-@ToString
-public class MemberVo implements Serializable {
-
+@Setter
+public class MemberVo {
     private BigDecimal id;
-
     private String firstName;
-
     private String lastName;
-
-    private char sex;
-
+    private Sex sex;
     private Date birth;
-
     private String tel;
-
     private String address;
-
-    private String name;
-
-    public void setName(String name) {
-        this.name = this.firstName + this.lastName;
-    }
-
-
+    private String email;
 }
